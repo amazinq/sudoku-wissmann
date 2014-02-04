@@ -5,8 +5,10 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import controller.GUI_Interface;
+
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements GUI_Interface {
 
 	private static MainFrame instance;
 
@@ -33,5 +35,4 @@ public class MainFrame extends JFrame {
 		}
 		return instance;
 	}
-
 }
