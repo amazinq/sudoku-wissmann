@@ -20,7 +20,7 @@ public abstract class GeneralPanel extends JPanel {
 		mainLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
-		mainLabel.setBounds(10, 11, 780, 36);
+		mainLabel.setBounds(10, 11, 780, 36);asdf
 		add(mainLabel);
 	}
 }
