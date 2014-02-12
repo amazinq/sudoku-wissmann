@@ -15,8 +15,7 @@ public class Controller {
 		return instance;
 	}
 	
-	public String[] generateGameField() {
+	public void generateGameField() {
 		
-		return null;
 	}
 }
