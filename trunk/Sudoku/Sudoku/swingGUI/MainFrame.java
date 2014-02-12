@@ -1,4 +1,4 @@
-package jGUI;
+package swingGUI;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
