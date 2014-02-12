@@ -16,6 +16,6 @@ public class Controller {
 	}
 	
 	public void generateGameField() {
-		
+		asdf
 	}
 }
