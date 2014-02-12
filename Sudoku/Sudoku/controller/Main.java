@@ -1,6 +1,6 @@
 package controller;
 
-import jGUI.MainFrame;
+import swingGUI.MainFrame;
 
 public class Main {
 

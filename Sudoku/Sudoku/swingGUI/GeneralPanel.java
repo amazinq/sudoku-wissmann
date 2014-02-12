@@ -1,4 +1,4 @@
-package jGUI;
+package swingGUI;
 
 import java.awt.Font;
 
