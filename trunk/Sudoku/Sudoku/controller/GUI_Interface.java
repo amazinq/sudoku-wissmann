@@ -1,6 +1,7 @@
 package controller;
 
-public interface GUI_Interface {
+import java.util.Observer;
 
-	Controller controller = Controller.getInstance();
+public interface GUI_Interface extends Observer {
+
 }

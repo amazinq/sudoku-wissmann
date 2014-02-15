@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controller.GUI_Interface;
 
 
 @SuppressWarnings("serial")
@@ -20,7 +23,7 @@ public class GamePanel extends GeneralPanel {
 	public GamePanel() {
 		labelArray = new JLabel[9][9];
 		lblListener = new LabelListener();
-		
+
 		Cancelbtn = new JButton("Cancel");
 		Cancelbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
