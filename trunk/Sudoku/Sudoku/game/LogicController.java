@@ -14,4 +14,12 @@ public class LogicController extends Observable {
 		this.setChanged();
 		this.notifyObservers("Testausgabe");
 	}
+	
+	public void generateGameField() {
+		for(int y = 0; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				
+			}
+		}
+	}
 }
