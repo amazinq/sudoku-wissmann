@@ -1,6 +1,6 @@
 package game;
 
-public class SingleField {
+public class SingleField extends FieldObject {
 
 	private int value;
 	private int xPosition;
