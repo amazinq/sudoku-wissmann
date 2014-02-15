@@ -19,10 +19,12 @@ public class GamePanel extends GeneralPanel {
 	private JButton Cancelbtn;
 	private JLabel labelArray[][];
 	private LabelListener lblListener;
+	private LabelKeyListener keyListener;
 
 	public GamePanel() {
 		labelArray = new JLabel[9][9];
 		lblListener = new LabelListener();
+		keyListener = new LabelKeyListener();
 
 		Cancelbtn = new JButton("Cancel");
 		Cancelbtn.addActionListener(new ActionListener() {
@@ -54,6 +56,7 @@ public class GamePanel extends GeneralPanel {
 				label.setVisible(true);
 				add(label);
 				label.addMouseListener(lblListener);
+				label.addKeyListener(keyListener);
 				xPosition += (40 + distance);
 				distance = 5;
 				labelArray[y][x] = label;
