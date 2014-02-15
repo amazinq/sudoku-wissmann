@@ -2,10 +2,12 @@ package swingGUI;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Observable;
 
 import javax.swing.JFrame;
 
 import controller.GUI_Interface;
+
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements GUI_Interface {
@@ -34,5 +36,11 @@ public class MainFrame extends JFrame implements GUI_Interface {
 			instance = new MainFrame();
 		}
 		return instance;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		System.out.println((String) arg1);
+		
 	}
 }
