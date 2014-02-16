@@ -9,6 +9,7 @@ import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import controller.GUI_Interface;
 
@@ -54,6 +55,9 @@ public class GamePanel extends GeneralPanel {
 				label.setOpaque(true);
 				label.setBackground(Color.RED);
 				label.setVisible(true);
+				label.setHorizontalTextPosition(SwingConstants.CENTER);
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setFont(new Font("Tahoma", Font.BOLD, 15));
 				add(label);
 				label.addMouseListener(lblListener);
 				label.addKeyListener(keyListener);

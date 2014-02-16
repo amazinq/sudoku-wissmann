@@ -10,8 +10,14 @@ public class LabelKeyListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		JLabel source = (JLabel) arg0.getSource();
-		source.setText(String.valueOf(arg0.getKeyChar()));
-		System.out.println("Test");
+		try {
+			int numberPressed = Integer.parseInt(String.valueOf(arg0.getKeyChar()));
+			if(numberPressed > 0 && numberPressed <= 9) {
+				source.setText(String.valueOf(arg0.getKeyChar()));
+			}
+		} catch(NumberFormatException e) {
+			
+		}
 		
 	}
 
