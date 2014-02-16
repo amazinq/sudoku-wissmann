@@ -22,6 +22,7 @@ public class LabelListener extends MouseAdapter {
 	public void mouseClicked(MouseEvent ME) {
 		source = (JLabel) ME.getSource();
 		controller.generateGameField();
+		source.requestFocusInWindow();
 		if (source.equals(oldLabel)) {
 			if(source.getBackground().equals(Color.RED)) {
 				source.setBackground(Color.BLUE);
