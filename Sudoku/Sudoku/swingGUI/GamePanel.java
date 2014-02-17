@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
 
 import controller.GUI_Interface;
 
@@ -21,25 +23,26 @@ public class GamePanel extends GeneralPanel {
 	private JLabel labelArray[][];
 	private LabelListener lblListener;
 	private LabelKeyListener keyListener;
+	private MainFrame mainFrame;
 
 	public GamePanel() {
 		labelArray = new JLabel[9][9];
 		lblListener = new LabelListener();
 		keyListener = new LabelKeyListener();
+		mainFrame = MainFrame.getInstance();
 
 		Cancelbtn = new JButton("Cancel");
 		Cancelbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainFrame.getInstance().remove(getPanel());
-				MainFrame.getInstance().setContentPane(new MainMenuPanel());
-				MainFrame.getInstance().revalidate();
-				MainFrame.getInstance().repaint();
+				mainFrame.remove(getPanel());
+				mainFrame.setContentPane(new MainMenuPanel());
+				mainFrame.revalidate();
+				mainFrame.repaint();
 			}
 		});
 		Cancelbtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		Cancelbtn.setBounds(680, 530, 89, 23);
 		add(Cancelbtn);
-		
 		
 		int xPosition = 45;
 		int yPosition = 75;
@@ -53,7 +56,8 @@ public class GamePanel extends GeneralPanel {
 				}
 				label.setLocation(xPosition, yPosition);
 				label.setOpaque(true);
-				label.setBackground(Color.RED);
+				label.setBackground(Color.WHITE);
+				label.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 				label.setVisible(true);
 				label.setHorizontalTextPosition(SwingConstants.CENTER);
 				label.setHorizontalAlignment(SwingConstants.CENTER);

@@ -7,6 +7,10 @@ public class GameField extends FieldObject {
 	private int fieldCoordinateX;
 	private int fieldCoordinateY;
 	private ArrayList<SingleField> fieldArray;
+	
+	public GameField() {
+		fieldArray = new ArrayList<SingleField>();
+	}
 
 	public ArrayList<SingleField> getFieldArray() {
 		return fieldArray;

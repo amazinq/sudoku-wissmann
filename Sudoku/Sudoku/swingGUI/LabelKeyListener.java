@@ -18,6 +18,9 @@ public class LabelKeyListener implements KeyListener {
 		} catch(NumberFormatException e) {
 			
 		}
+		if(arg0.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			source.setText(" ");
+		}
 		
 	}
 

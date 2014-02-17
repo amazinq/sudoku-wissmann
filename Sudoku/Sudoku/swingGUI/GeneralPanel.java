@@ -12,7 +12,7 @@ public abstract class GeneralPanel extends JPanel {
 	private JLabel mainLabel;
 	
 	public GeneralPanel() {
-		// Absolute Layout, framesize
+		// Absolute Layout
 		setLayout(null);
 
 		// Überschriftenlabel
