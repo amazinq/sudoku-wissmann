@@ -7,6 +7,10 @@ public class Column extends FieldObject {
 	private int columnNumber;
 	private ArrayList<SingleField> fieldArray;
 
+	public Column() {
+		fieldArray = new ArrayList<SingleField>();
+	}
+	
 	public ArrayList<SingleField> getFieldArray() {
 		return fieldArray;
 	}

@@ -7,6 +7,10 @@ public class Row extends FieldObject {
 	private int rowNumber;
 	private ArrayList<SingleField> fieldArray;
 
+	public Row() {
+		fieldArray = new ArrayList<SingleField>();
+	}
+	
 	public ArrayList<SingleField> getFieldArray() {
 		return fieldArray;
 	}

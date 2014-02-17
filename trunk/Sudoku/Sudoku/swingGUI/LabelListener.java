@@ -24,16 +24,16 @@ public class LabelListener extends MouseAdapter {
 		controller.generateGameField();
 		source.requestFocusInWindow();
 		if (source.equals(oldLabel)) {
-			if(source.getBackground().equals(Color.RED)) {
-				source.setBackground(Color.BLUE);
+			if(source.getBackground().equals(Color.WHITE)) {
+				source.setBackground(Color.CYAN);
 			} else {
-				source.setBackground(Color.RED);
+				source.setBackground(Color.WHITE);
 			}
 		} else if(oldLabel != null) {
-			source.setBackground(Color.BLUE);
-			oldLabel.setBackground(Color.RED);
+			source.setBackground(Color.CYAN);
+			oldLabel.setBackground(Color.WHITE);
 		} else {
-			source.setBackground(Color.BLUE);
+			source.setBackground(Color.CYAN);
 		}
 		oldLabel = source;
 		

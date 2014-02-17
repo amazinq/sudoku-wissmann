@@ -13,6 +13,7 @@ import controller.GUI_Interface;
 public class MainFrame extends JFrame implements GUI_Interface {
 
 	private static MainFrame instance;
+	private char array[][];
 
 
 	/**
@@ -40,6 +41,10 @@ public class MainFrame extends JFrame implements GUI_Interface {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+		array = (char[][]) arg1;
+	}
+
+	public char[][] getArray() {
+		return array;
 	}
 }
