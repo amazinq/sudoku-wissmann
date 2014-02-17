@@ -37,5 +37,14 @@ public class LogicController extends Observable {
 				fieldList[new Double(Math.floor(y / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()].addField(singleFieldArray[y][x]);
 			}
 		}
+		ArrayList<Integer> availableNumbers = new ArrayList<Integer>();
+		for(int i = 1; i < 10; i++) {
+			availableNumbers.add(i);
+		}
+		for(SingleField elem : singleFieldArray[0]) {
+			Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
+			elem.setValue(currentNumber);
+			availableNumbers.remove(currentNumber);
+		}
 	}
 }
