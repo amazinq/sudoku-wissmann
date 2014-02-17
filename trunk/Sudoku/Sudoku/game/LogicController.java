@@ -22,6 +22,7 @@ public class LogicController extends Observable {
 	}
 	
 	public void generateGameField() {
+		ArrayList<Integer> availableNumbers = new ArrayList<Integer>();
 		for(int y = 0; y < 9; y++) {
 			rowList[y] = new Row();
 			for(int x = 0; x < 9; x++) {
@@ -37,7 +38,6 @@ public class LogicController extends Observable {
 				fieldList[new Double(Math.floor(y / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()].addField(singleFieldArray[y][x]);
 			}
 		}
-		ArrayList<Integer> availableNumbers = new ArrayList<Integer>();
 		for(int i = 1; i < 10; i++) {
 			availableNumbers.add(i);
 		}
@@ -46,5 +46,6 @@ public class LogicController extends Observable {
 			elem.setValue(currentNumber);
 			availableNumbers.remove(currentNumber);
 		}
+		// Erste zeile generiert 
 	}
 }
