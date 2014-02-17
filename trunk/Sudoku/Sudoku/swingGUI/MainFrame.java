@@ -40,7 +40,6 @@ public class MainFrame extends JFrame implements GUI_Interface {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println((String) arg1);
 		
 	}
 }
