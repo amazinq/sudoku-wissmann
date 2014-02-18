@@ -12,11 +12,15 @@ public class LogicController extends Observable {
 	private GameField[][] fieldList;
 	private SingleField[][] singleFieldArray;
 	
+	private Service service;
+	
 	public LogicController() {
 		columnList = new Column[9];
 		rowList = new Row[9];
 		fieldList = new GameField[3][3];
 		singleFieldArray = new SingleField[9][9];
+		
+		service = new Service();
 		
 		addObserver(MainFrame.getInstance());
 	}
@@ -49,6 +53,7 @@ public class LogicController extends Observable {
 		for(int y = 1; y < 9; y++) {
 			for(int x = 0; x < 9; x++) {
 				SingleField currentField = singleFieldArray[y][x];
+				service.generateAvailableNumbers(rowList[y-1], columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], availableNumbers);
 				
 				
 			}
