@@ -26,6 +26,7 @@ public class LabelListener extends MouseAdapter {
 				source.setBackground(Color.CYAN);
 			} else {
 				source.setBackground(Color.WHITE);
+				source.transferFocusBackward();
 			}
 		} else if(oldLabel != null) {
 			source.setBackground(Color.CYAN);

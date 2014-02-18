@@ -56,6 +56,7 @@ public class LogicController extends Observable {
 				service.generateAvailableNumbers(rowList[y-1], columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], availableNumbers);
 				
 				
+				
 			}
 		}
 		this.setChanged();
