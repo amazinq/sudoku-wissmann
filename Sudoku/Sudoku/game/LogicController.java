@@ -39,12 +39,13 @@ public class LogicController extends Observable {
 			}
 			availableNumbers.add(y + 1);
 		}
+		
 		for(SingleField elem : singleFieldArray[0]) {
 			Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
 			elem.setValue(currentNumber);
 			availableNumbers.remove(currentNumber);
 		}
-		System.out.println("test");
+		
 		for(int y = 1; y < 9; y++) {
 			for(int x = 0; x < 9; x++) {
 				SingleField currentField = singleFieldArray[y][x];
