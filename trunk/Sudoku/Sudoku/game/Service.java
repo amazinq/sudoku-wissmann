@@ -9,12 +9,19 @@ public class Service {
 		for(int i = 1; i < 10; i++) {
 			availableNumbers.add(i);
 		}
-		if(availableNumbers.contains(row.getInheritedNumbers().get(xCoordinate))) {
-			availableNumbers.remove(row.getInheritedNumbers().get(xCoordinate));
+		for(Integer num : row.getInheritedNumbers()) {
+			if(availableNumbers.contains(num)) {
+				availableNumbers.remove(num);
+			}
 		}
-		if(availableNumbers.contains(column.getInheritedNumbers().get(yCoordinate))) {
-			availableNumbers.remove(column.getInheritedNumbers().get(yCoordinate));
+		for(Integer num : column.getInheritedNumbers()) {
+			if(availableNumbers.contains(num)) {
+				availableNumbers.remove(num);
+			}
 		}
+//		if(availableNumbers.contains(column.getInheritedNumbers().get(yCoordinate))) {
+//			availableNumbers.remove(column.getInheritedNumbers().get(yCoordinate));
+//		}
 		for(Integer num : gameField.getInheritedNumbers()) {
 			if(availableNumbers.contains(num)) {
 				availableNumbers.remove(num);
