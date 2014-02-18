@@ -44,7 +44,7 @@ public class LogicController extends Observable {
 			elem.setValue(currentNumber);
 			availableNumbers.remove(currentNumber);
 		}
-		System.out.println(availableNumbers.size());
+		System.out.println("test");
 		for(int y = 1; y < 9; y++) {
 			for(int x = 0; x < 9; x++) {
 				SingleField currentField = singleFieldArray[y][x];

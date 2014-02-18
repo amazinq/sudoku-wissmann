@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Column extends FieldObject {
 
-	private int columnNumber;
 	private ArrayList<SingleField> fieldArray;
 
 	public Column() {
@@ -16,11 +15,5 @@ public class Column extends FieldObject {
 	}
 	public void addField(SingleField field) {
 		fieldArray.add(field);
-	}
-	public int getColumnNumber() {
-		return columnNumber;
-	}
-	public void setColumnNumber(int columnNumber) {
-		this.columnNumber = columnNumber;
 	}
 }
