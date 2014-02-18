@@ -45,46 +45,53 @@ public class LogicController extends Observable {
 			availableNumbers.add(y + 1);
 		}
 		
-		for(SingleField elem : singleFieldArray[0]) {
-			Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
-			elem.setValue(currentNumber);
-			availableNumbers.remove(currentNumber);
-		}
+//		for(SingleField elem : singleFieldArray[0]) {
+//			Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
+//			elem.setValue(currentNumber);
+//			availableNumbers.remove(currentNumber);
+//		}
 		
 		this.resetAvailableNumbers();
-		for(int y = 1; y < 9; y++) {
-			for(int x = 0; x < 9; x++) {
+		Integer currentNumber = 0;
+		int g = 0;
+		int y = 0;
+		int x = 0;
+		while (y < 9) {
+			while (x < 9) {
 				SingleField currentField = singleFieldArray[y][x];
-				System.out.println(availableNumbers.size());
 				if(availableNumbers.size() != 0) {
-					Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
-					if(service.doesConflict(rowList[y], (y-1), x, columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], currentNumber)) {
-						//System.out.println("conflict");
+					currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
+					if(service.doesConflict(rowList[y], columnList[x], fieldList[new Double(Math.floor((y) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], currentNumber)) {
 						availableNumbers.remove(currentNumber);
-						if(x > 2) {
-							x = x-2;
-						} else {
-							x = 0;
-						}
+						
+							
 					} else {
 						currentField.setValue(currentNumber);
-						//System.out.println("no conflict");
 						//availableNumbers.remove(currentNumber);
 						this.resetAvailableNumbers();
+						x++;
 					}
-					
+				} else { 
+					if(x >= 1) {
+						x--;
+					} else {
+						x = 8;
+						if(y > 0) {
+							y--;	
+						} else {
+							y = 0;
+						}
+					}
+					this.resetAvailableNumbers();
 				}
-//				else {
-//					if((x) < 2) {
-//						x = 7;
-//						if((y) > 1) {
-//							y--;
-//						}
-//					} else {
-//						x = x-2;
-//					}
-//				}
+				if(g > 1000000) {
+					x = 9;
+					y = 9;
+				}
+				g++;
 			}
+			y++;
+			x = 0;
 		}
 		this.setChanged();
 		this.notifyObservers(singleFieldArray);

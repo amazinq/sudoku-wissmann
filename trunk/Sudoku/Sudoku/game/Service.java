@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Service {
 
-	public boolean doesConflict(Row row, int yCoordinate, int xCoordinate, Column column, GameField gameField, Integer currentNumber) {
+	public boolean doesConflict(Row row, Column column, GameField gameField, Integer currentNumber) {
 
 		for(Integer num : column.getInheritedNumbers()) {
 			if(currentNumber.equals(num)) {
