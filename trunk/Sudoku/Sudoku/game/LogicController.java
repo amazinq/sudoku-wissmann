@@ -37,15 +37,22 @@ public class LogicController extends Observable {
 				columnList[x].addField(singleFieldArray[y][x]);
 				fieldList[new Double(Math.floor(y / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()].addField(singleFieldArray[y][x]);
 			}
-		}
-		for(int i = 1; i < 10; i++) {
-			availableNumbers.add(i);
+			availableNumbers.add(y + 1);
 		}
 		for(SingleField elem : singleFieldArray[0]) {
 			Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
 			elem.setValue(currentNumber);
 			availableNumbers.remove(currentNumber);
 		}
-		// Erste zeile generiert 
+		System.out.println(availableNumbers.size());
+		for(int y = 1; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				SingleField currentField = singleFieldArray[y][x];
+				
+				
+			}
+		}
+		this.setChanged();
+		this.notifyObservers(singleFieldArray);
 	}
 }
