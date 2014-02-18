@@ -1,5 +1,7 @@
 package swingGUI;
 
+import game.SingleField;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -24,12 +26,14 @@ public class GamePanel extends GeneralPanel {
 	private LabelListener lblListener;
 	private LabelKeyListener keyListener;
 	private MainFrame mainFrame;
+	private SingleField[][] fieldArray;
 
 	public GamePanel() {
 		labelArray = new JLabel[9][9];
 		lblListener = new LabelListener();
 		keyListener = new LabelKeyListener();
 		mainFrame = MainFrame.getInstance();
+		fieldArray = mainFrame.getArray();
 
 		Cancelbtn = new JButton("Cancel");
 		Cancelbtn.addActionListener(new ActionListener() {
@@ -56,6 +60,7 @@ public class GamePanel extends GeneralPanel {
 				}
 				label.setLocation(xPosition, yPosition);
 				label.setOpaque(true);
+				label.setText(Integer.toString(fieldArray[y][x].getValue()));
 				label.setBackground(Color.WHITE);
 				label.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 				label.setVisible(true);

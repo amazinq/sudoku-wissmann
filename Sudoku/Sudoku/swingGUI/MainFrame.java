@@ -1,5 +1,7 @@
 package swingGUI;
 
+import game.SingleField;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Observable;
@@ -13,7 +15,7 @@ import controller.GUI_Interface;
 public class MainFrame extends JFrame implements GUI_Interface {
 
 	private static MainFrame instance;
-	private char array[][];
+	private SingleField array[][];
 
 
 	/**
@@ -41,10 +43,10 @@ public class MainFrame extends JFrame implements GUI_Interface {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		array = (char[][]) arg1;
+		array = (SingleField[][]) arg1;
 	}
 
-	public char[][] getArray() {
+	public SingleField[][] getArray() {
 		return array;
 	}
 }

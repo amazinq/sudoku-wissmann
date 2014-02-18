@@ -9,6 +9,8 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import controller.Controller;
+
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GeneralPanel {
 
@@ -36,6 +38,7 @@ public class MainMenuPanel extends GeneralPanel {
 		playGamebtn = new JButton("Play");
 		playGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Controller.getInstance().generateGameField();
 				MainFrame.getInstance().remove(getPanel());
 				MainFrame.getInstance().setContentPane(new GamePanel());
 				MainFrame.getInstance().revalidate();

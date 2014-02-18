@@ -19,6 +19,7 @@ public class Controller {
 	}
 	
 	public void generateGameField() {
-
+		logicController.generateGameField();
+		
 	}
 }
