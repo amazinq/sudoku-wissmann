@@ -1,6 +1,7 @@
 package consoleGUI;
 
 import java.util.Observable;
+import java.util.Scanner;
 
 import controller.GUI_Interface;
 
@@ -28,9 +29,12 @@ public class ConsoleGUI implements GUI_Interface {
 			{' ','╚','═','╧','═','╧','═','╩','═','╧','═','╧','═','╩','═','╧','═','╧','═','╝'},
 			{' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}//X-Achse
 		};
+	private boolean gameWon;
+	private Scanner scan;
 	
 	public ConsoleGUI() {
-		
+		gameWon = false;
+		scan = new Scanner(System.in);
 	}
 	
 	public void printGameField() {
@@ -46,6 +50,13 @@ public class ConsoleGUI implements GUI_Interface {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void runGame() {
+		while (gameWon == false) {
+			printGameField();
+			System.out.print("X - Koordinate: ");
+		}
 	}
 
 }

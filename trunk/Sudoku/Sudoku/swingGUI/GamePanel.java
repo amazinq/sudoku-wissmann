@@ -10,11 +10,13 @@ import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
+import controller.Controller;
 import controller.GUI_Interface;
 
 
@@ -22,11 +24,14 @@ import controller.GUI_Interface;
 public class GamePanel extends GeneralPanel {
 
 	private JButton Cancelbtn;
+	private JButton checkBtn;
 	private JLabel labelArray[][];
 	private LabelListener lblListener;
 	private LabelKeyListener keyListener;
 	private MainFrame mainFrame;
 	private SingleField[][] fieldArray;
+	private Controller controller;
+	private Converter converter;
 
 	public GamePanel() {
 		labelArray = new JLabel[9][9];
@@ -34,6 +39,8 @@ public class GamePanel extends GeneralPanel {
 		keyListener = new LabelKeyListener();
 		mainFrame = MainFrame.getInstance();
 		fieldArray = mainFrame.getArray();
+		controller = Controller.getInstance();
+		converter = new Converter();
 
 		Cancelbtn = new JButton("Cancel");
 		Cancelbtn.addActionListener(new ActionListener() {
@@ -47,6 +54,28 @@ public class GamePanel extends GeneralPanel {
 		Cancelbtn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		Cancelbtn.setBounds(680, 530, 89, 23);
 		add(Cancelbtn);
+		
+		checkBtn = new JButton("Check");
+		checkBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(controller.gameIsWon(converter.toIntArray(labelArray))) {
+					JOptionPane
+					.showMessageDialog(
+							null,
+							"Game Won!",
+							"WIN", JOptionPane.PLAIN_MESSAGE);
+				} else {
+					JOptionPane
+					.showMessageDialog(
+							null,
+							"Not Finished yet",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		checkBtn.setFont(new Font("Tahoma", Font.BOLD, 16));
+		checkBtn.setBounds(550, 250, 160, 33);
+		add(checkBtn);
 		
 		int xPosition = 45;
 		int yPosition = 75;

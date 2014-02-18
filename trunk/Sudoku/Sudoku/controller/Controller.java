@@ -22,4 +22,8 @@ public class Controller {
 		logicController.generateGameField();
 		
 	}
+	
+	public boolean gameIsWon(Integer[][] field) {
+		return logicController.gameIsWon(field);
+	}
 }
