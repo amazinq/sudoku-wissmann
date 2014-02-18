@@ -11,6 +11,7 @@ public class LogicController extends Observable {
 	private Row[] rowList;
 	private GameField[][] fieldList;
 	private SingleField[][] singleFieldArray;
+	private ArrayList<Integer> availableNumbers;
 	
 	private Service service;
 	
@@ -26,7 +27,7 @@ public class LogicController extends Observable {
 	}
 	
 	public void generateGameField() {
-		ArrayList<Integer> availableNumbers = new ArrayList<Integer>();
+		availableNumbers = new ArrayList<Integer>();
 		for(int y = 0; y < 9; y++) {
 			rowList[y] = new Row();
 			for(int x = 0; x < 9; x++) {
@@ -50,14 +51,28 @@ public class LogicController extends Observable {
 			availableNumbers.remove(currentNumber);
 		}
 		
+		this.resetAvailableNumbers();
 		for(int y = 1; y < 9; y++) {
 			for(int x = 0; x < 9; x++) {
 				SingleField currentField = singleFieldArray[y][x];
-				service.generateAvailableNumbers(rowList[y], (y-1), x, columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], availableNumbers);
+				System.out.println(availableNumbers.size());
 				if(availableNumbers.size() != 0) {
 					Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
-					currentField.setValue(currentNumber);
-					availableNumbers.remove(currentNumber);
+					if(service.doesConflict(rowList[y], (y-1), x, columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], currentNumber)) {
+						//System.out.println("conflict");
+						availableNumbers.remove(currentNumber);
+						if(x > 2) {
+							x = x-2;
+						} else {
+							x = 0;
+						}
+					} else {
+						currentField.setValue(currentNumber);
+						//System.out.println("no conflict");
+						//availableNumbers.remove(currentNumber);
+						this.resetAvailableNumbers();
+					}
+					
 				}
 //				else {
 //					if((x) < 2) {
@@ -73,5 +88,11 @@ public class LogicController extends Observable {
 		}
 		this.setChanged();
 		this.notifyObservers(singleFieldArray);
+	}
+	private void resetAvailableNumbers() {
+		availableNumbers.clear();
+		for (Integer i = 1; i < 10; i++) {
+			availableNumbers.add(i);
+		}
 	}
 }
