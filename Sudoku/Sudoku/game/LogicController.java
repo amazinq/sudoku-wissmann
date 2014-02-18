@@ -50,7 +50,7 @@ public class LogicController extends Observable {
 			availableNumbers.remove(currentNumber);
 		}
 		
-		for(int y = 1; y < 2; y++) {
+		for(int y = 1; y < 9; y++) {
 			for(int x = 0; x < 9; x++) {
 				SingleField currentField = singleFieldArray[y][x];
 				service.generateAvailableNumbers(rowList[y], (y-1), x, columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], availableNumbers);
@@ -59,7 +59,7 @@ public class LogicController extends Observable {
 					currentField.setValue(currentNumber);
 					availableNumbers.remove(currentNumber);
 				}
-				//System.out.println(availableNumbers.size());//else {
+//				else {
 //					if((x) < 2) {
 //						x = 7;
 //						if((y) > 1) {
