@@ -102,4 +102,15 @@ public class LogicController extends Observable {
 			availableNumbers.add(i);
 		}
 	}
+	
+	public boolean gameIsWon(Integer[][] field) {
+		for(int y = 0; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				if(!new Integer(singleFieldArray[y][x].getValue()).equals(field[y][x])) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
