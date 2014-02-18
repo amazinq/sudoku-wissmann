@@ -54,9 +54,13 @@ public class LogicController extends Observable {
 			for(int x = 0; x < 9; x++) {
 				SingleField currentField = singleFieldArray[y][x];
 				service.generateAvailableNumbers(rowList[y-1], (y-1), x, columnList[x], fieldList[new Double(Math.floor((y-1) / 3.0)).intValue()][new Double(Math.floor(x / 3.0)).intValue()], availableNumbers);
-				for(Integer elem : availableNumbers) {
-					System.out.println(elem);
-				}
+//				if(availableNumbers.size() != 0) {
+//					Integer currentNumber = availableNumbers.get(new Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
+//					currentField.setValue(currentNumber);
+//					availableNumbers.remove(currentNumber);
+//				} else {
+//					x--;
+//				}
 			}
 		}
 		this.setChanged();

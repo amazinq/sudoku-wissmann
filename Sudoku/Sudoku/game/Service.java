@@ -12,5 +12,13 @@ public class Service {
 		if(availableNumbers.contains(row.getInheritedNumbers().get(xCoordinate))) {
 			availableNumbers.remove(row.getInheritedNumbers().get(xCoordinate));
 		}
+		if(availableNumbers.contains(column.getInheritedNumbers().get(yCoordinate))) {
+			availableNumbers.remove(column.getInheritedNumbers().get(yCoordinate));
+		}
+		for(Integer num : gameField.getInheritedNumbers()) {
+			if(availableNumbers.contains(num)) {
+				availableNumbers.remove(num);
+			}
+		}
 	}
 }
