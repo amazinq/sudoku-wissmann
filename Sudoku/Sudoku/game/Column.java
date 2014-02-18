@@ -16,4 +16,14 @@ public class Column extends FieldObject {
 	public void addField(SingleField field) {
 		fieldArray.add(field);
 	}
+	public ArrayList<Integer> getInheritedNumbers() {
+		ArrayList<Integer> inheritedNumbers = new ArrayList<Integer>();
+		for(SingleField elem : fieldArray) {
+			if(!inheritedNumbers.contains(elem.getValue())) {
+				inheritedNumbers.add(elem.getValue());
+			}
+		}
+		
+		return inheritedNumbers;
+	}
 }
