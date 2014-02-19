@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
+import consoleGUI.ConsoleController;
+import consoleGUI.ConsoleGUI;
 import swingGUI.MainFrame;
 
 public class LogicController extends Observable {
@@ -25,7 +27,8 @@ public class LogicController extends Observable {
 		service = new Service();
 		clone = new Clone();
 
-		addObserver(MainFrame.getInstance());
+		//addObserver(MainFrame.getInstance());
+		addObserver(ConsoleController.getInstance());
 	}
 
 	public void generateGameField(int difficulty) {
