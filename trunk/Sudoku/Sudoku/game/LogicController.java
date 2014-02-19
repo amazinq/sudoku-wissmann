@@ -14,6 +14,7 @@ public class LogicController extends Observable {
 	private SingleField[][] singleFieldArray;
 
 	private Service service;
+	private Clone clone;
 
 	public LogicController() {
 		columnList = new Column[9];
@@ -22,6 +23,7 @@ public class LogicController extends Observable {
 		singleFieldArray = new SingleField[9][9];
 
 		service = new Service();
+		clone = new Clone();
 
 		addObserver(MainFrame.getInstance());
 	}
@@ -46,13 +48,6 @@ public class LogicController extends Observable {
 						.addField(singleFieldArray[y][x]);
 			}
 		}
-
-		// for(SingleField elem : singleFieldArray[0]) {
-		// Integer currentNumber = availableNumbers.get(new
-		// Double(Math.floor(Math.random()*availableNumbers.size())).intValue());
-		// elem.setValue(currentNumber);
-		// availableNumbers.remove(currentNumber);
-		// }
 
 		Integer currentNumber = 0;
 		int x = 0;
@@ -81,7 +76,7 @@ public class LogicController extends Observable {
 						x--;
 				}
 			}
-		
+		clone.cloneSudokuField(singleFieldArray);
 		this.setChanged();
 		this.notifyObservers(singleFieldArray);
 	}
