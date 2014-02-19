@@ -93,20 +93,19 @@ public class LogicController extends Observable {
 			if (currentField.getValue() != 0) {
 				int oldValue = currentField.getValue();
 				currentField.setValue(0);
-//				if (service
-//						.fieldIsReproducible(
-//								clone.getClonedRowArray()[yValue],
-//								clone.getClonedColumnArray()[xValue],
-//								clone.getClonedGameFieldArray()[new Double(
-//										Math.floor((new Double(Math
-//												.floor(yValue / 3)).intValue()) / 3.0))
-//										.intValue()][new Double(Math
-//										.floor(xValue / 3.0)).intValue()])) {
-//					index++;
-//				} else {
-//					currentField.setValue(oldValue);
-//				}
-				index++;
+				if (service
+						.fieldIsReproducible(
+								clone.getClonedRowArray()[yValue],
+								clone.getClonedColumnArray()[xValue],
+								clone.getClonedGameFieldArray()[new Double(
+										Math.floor((new Double(Math
+												.floor(yValue / 3)).intValue()) / 3.0))
+										.intValue()][new Double(Math
+										.floor(xValue / 3.0)).intValue()])) {
+					index++;
+				} else {
+					currentField.setValue(oldValue);
+				}
 			}
 		}
 		this.setChanged();

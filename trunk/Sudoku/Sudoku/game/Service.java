@@ -26,23 +26,22 @@ public class Service {
 	}
 	public boolean fieldIsReproducible(Row row, Column column, GameField gameField) {
 		ArrayList<Integer> numbers = new ArrayList<Integer>();
-		
 		for(Integer elem : row.getInheritedNumbers()) {
-			if(!numbers.contains(elem)) {
+			if(!numbers.contains(elem) && elem != 0) {
 				numbers.add(elem);
 			}
 		}
 		for(Integer elem : column.getInheritedNumbers()) {
-			if(!numbers.contains(elem)) {
+			if(!numbers.contains(elem) && elem != 0) {
 				numbers.add(elem);
 			}
 		}
 		for(Integer elem : gameField.getInheritedNumbers()) {
-			if(!numbers.contains(elem)) {
+			if(!numbers.contains(elem) && elem != 0) {
 				numbers.add(elem);
 			}
 		}
-		System.out.println(numbers.size());
+		
 		if(numbers.size() == 8) {
 			return true;
 		}
