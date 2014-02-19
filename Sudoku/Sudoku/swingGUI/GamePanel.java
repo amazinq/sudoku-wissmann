@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ public class GamePanel extends GeneralPanel {
 	private SingleField[][] fieldArray;
 	private Controller controller;
 	private Converter converter;
+	private JButton btnSave;
 
 	public GamePanel() {
 		labelArray = new JLabel[9][9];
@@ -76,6 +78,22 @@ public class GamePanel extends GeneralPanel {
 		checkBtn.setFont(new Font("Tahoma", Font.BOLD, 16));
 		checkBtn.setBounds(550, 250, 160, 33);
 		add(checkBtn);
+		
+		btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FileChooser fileChooser = new FileChooser();
+				File file = new File(fileChooser.generateSaveDialog().getAbsolutePath().replace(".txt", ""));
+				controller.saveData(file);
+				mainFrame.remove(getPanel());
+				mainFrame.setContentPane(new MainMenuPanel());
+				mainFrame.revalidate();
+				mainFrame.repaint();
+			}
+		});
+		btnSave.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnSave.setBounds(550, 341, 160, 33);
+		add(btnSave);
 		
 		int xPosition = 45;
 		int yPosition = 75;
