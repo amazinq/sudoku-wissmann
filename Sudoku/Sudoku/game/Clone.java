@@ -1,11 +1,13 @@
 package game;
 
+
 public class Clone {
 	
 	private SingleField[][] clonedSingleFieldArray;
 	private Row[] clonedRowArray;
 	private Column[] clonedColumnArray;
 	private GameField[][] clonedGameFieldArray;
+	
 	
 	public Clone() {
 		clonedSingleFieldArray = new SingleField[9][9];
@@ -51,5 +53,4 @@ public class Clone {
 	protected GameField[][] getClonedGameFieldArray() {
 		return clonedGameFieldArray;
 	}
-	
 }

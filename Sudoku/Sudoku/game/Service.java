@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Service {
 
@@ -22,37 +23,31 @@ public class Service {
 			}
 		}
 		return false;
+	}
+	public boolean fieldIsReproducible(Row row, Column column, GameField gameField) {
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		
+		for(Integer elem : row.getInheritedNumbers()) {
+			if(!numbers.contains(elem)) {
+				numbers.add(elem);
+			}
+		}
+		for(Integer elem : column.getInheritedNumbers()) {
+			if(!numbers.contains(elem)) {
+				numbers.add(elem);
+			}
+		}
+		for(Integer elem : gameField.getInheritedNumbers()) {
+			if(!numbers.contains(elem)) {
+				numbers.add(elem);
+			}
+		}
+		System.out.println(numbers.size());
+		if(numbers.size() == 8) {
+			return true;
+		}
+		return false;
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//		for(Integer num : row.getInheritedNumbers()) {
-//			if(availableNumbers.contains(num)) {
-//				availableNumbers.remove(num);
-//			}
-//		}
-//		for(Integer num : column.getInheritedNumbers()) {
-//			if(availableNumbers.contains(num)) {
-//				availableNumbers.remove(num);
-//			}
-//		}
-//		if(availableNumbers.contains(column.getInheritedNumbers().get(yCoordinate))) {
-//			availableNumbers.remove(column.getInheritedNumbers().get(yCoordinate));
-//		}
-//		for(Integer num : gameField.getInheritedNumbers()) {
-//			if(availableNumbers.contains(num)) {
-//				availableNumbers.remove(num);
-//			}
-//		}
 	}
 }

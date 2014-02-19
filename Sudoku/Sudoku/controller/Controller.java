@@ -18,8 +18,8 @@ public class Controller {
 		return instance;
 	}
 	
-	public void generateGameField() {
-		logicController.generateGameField();
+	public void generateGameField(int difficulty) {
+		logicController.generateGameField(difficulty);
 		
 	}
 	
