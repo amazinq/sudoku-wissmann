@@ -87,7 +87,7 @@ public class ConsoleGUI {
 				break;
 		case(2) : difficulty = 40;
 				break;
-		case(3) : difficulty = 45;
+		case(3) : difficulty = 50;
 				break;
 		}
 		controller.generateGameField(difficulty);
