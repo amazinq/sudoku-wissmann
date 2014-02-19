@@ -97,7 +97,7 @@ public class LogicController extends Observable {
 				yValue = random.nextInt(9);
 				SingleField currentField = clone.getClonedSingleFieldArray()[yValue][xValue];
 				regenerateIndex++;
-				//System.out.println(regenerateIndex);
+				// System.out.println(regenerateIndex);
 				if (currentField.getValue() != 0) {
 					int oldValue = currentField.getValue();
 					currentField.setValue(0);
@@ -117,17 +117,17 @@ public class LogicController extends Observable {
 					}
 				}
 				int oldIndex = index;
-				if(regenerateIndex > 100000) {
+				if (regenerateIndex > 100000) {
 					index = difficulty;
 				}
-				if(oldIndex == difficulty) {
+				if (oldIndex == difficulty) {
 					fieldGenerated = true;
 				}
 			}
-			
+
 		}
 		this.setChanged();
-			this.notifyObservers(clone.getClonedSingleFieldArray());
+		this.notifyObservers(clone.getClonedSingleFieldArray());
 	}
 
 	private void resetAvailableNumbers(ArrayList<Integer> availableNumbers) {
