@@ -14,6 +14,7 @@ public abstract class GeneralPanel extends JPanel {
 	public GeneralPanel() {
 		// Absolute Layout
 		setLayout(null);
+		setSize(800, 600);
 
 		// Überschriftenlabel
 		mainLabel = new JLabel("Sudoku");

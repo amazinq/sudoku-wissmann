@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import controller.Controller;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GeneralPanel {
@@ -19,6 +21,10 @@ public class MainMenuPanel extends GeneralPanel {
 	private JButton playGamebtn;
 	private JButton loadSavedGamebtn;
 	private FileChooser chooser;
+	private JRadioButton rdbtnEasy;
+	private JRadioButton rdbtnMedium;
+	private JRadioButton rdbtnHard;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	public MainMenuPanel() {
 
@@ -38,7 +44,15 @@ public class MainMenuPanel extends GeneralPanel {
 		playGamebtn = new JButton("Play");
 		playGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller.getInstance().generateGameField();
+				int difficulty = 0;
+				if(rdbtnEasy.isSelected()) {
+					difficulty = 35;
+				} else if(rdbtnMedium.isSelected()) {
+					difficulty = 40;
+				} else {
+					difficulty = 45;
+				}
+				Controller.getInstance().generateGameField(difficulty);
 				MainFrame.getInstance().remove(getPanel());
 				MainFrame.getInstance().setContentPane(new GamePanel());
 				MainFrame.getInstance().revalidate();
@@ -67,6 +81,22 @@ public class MainMenuPanel extends GeneralPanel {
 		loadSavedGamebtn.setBounds(275, 300, 250, 40);
 		loadSavedGamebtn.setVisible(true);
 		add(loadSavedGamebtn);
+		
+		rdbtnEasy = new JRadioButton("Easy");
+		buttonGroup.add(rdbtnEasy);
+		rdbtnEasy.setSelected(true);
+		rdbtnEasy.setBounds(618, 210, 109, 23);
+		add(rdbtnEasy);
+		
+		rdbtnMedium = new JRadioButton("Medium");
+		buttonGroup.add(rdbtnMedium);
+		rdbtnMedium.setBounds(618, 250, 109, 23);
+		add(rdbtnMedium);
+		
+		rdbtnHard = new JRadioButton("Hard");
+		buttonGroup.add(rdbtnHard);
+		rdbtnHard.setBounds(618, 290, 109, 23);
+		add(rdbtnHard);
 	}
 	
 	private JPanel getPanel() {

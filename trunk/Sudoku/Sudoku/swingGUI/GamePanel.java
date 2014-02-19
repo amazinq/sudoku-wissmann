@@ -89,7 +89,11 @@ public class GamePanel extends GeneralPanel {
 				}
 				label.setLocation(xPosition, yPosition);
 				label.setOpaque(true);
-				label.setText(Integer.toString(fieldArray[y][x].getValue()));
+				if(fieldArray[y][x].getValue() == 0) {
+					label.setText(" ");
+				} else {
+					label.setText(Integer.toString(fieldArray[y][x].getValue()));
+				}
 				label.setBackground(Color.WHITE);
 				label.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 				label.setVisible(true);

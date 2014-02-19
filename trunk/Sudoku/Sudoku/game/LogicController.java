@@ -28,7 +28,7 @@ public class LogicController extends Observable {
 		addObserver(MainFrame.getInstance());
 	}
 
-	public void generateGameField() {
+	public void generateGameField(int difficulty) {
 		for (int y = 0; y < 9; y++) {
 			rowList[y] = new Row();
 			for (int x = 0; x < 9; x++) {
@@ -40,7 +40,8 @@ public class LogicController extends Observable {
 							Math.floor(x / 3.0)).intValue()] = new GameField();
 				}
 				singleFieldArray[y][x] = new SingleField();
-				this.resetAvailableNumbers(singleFieldArray[y][x].getAvailableNumbers());
+				this.resetAvailableNumbers(singleFieldArray[y][x]
+						.getAvailableNumbers());
 				rowList[y].addField(singleFieldArray[y][x]);
 				columnList[x].addField(singleFieldArray[y][x]);
 				fieldList[new Double(Math.floor(y / 3.0)).intValue()][new Double(
@@ -52,33 +53,64 @@ public class LogicController extends Observable {
 		Integer currentNumber = 0;
 		int x = 0;
 		Random random = new Random();
-			while (x < 81) {
-				SingleField currentField = singleFieldArray[new Double(Math.floor(x / 9)).intValue()][x % 9];
-				if (currentField.getAvailableNumbers().size() > 0) {
-					currentNumber = currentField.getAvailableNumbers().get(random.nextInt(currentField.getAvailableNumbers().size()));
-					if (service
-							.conflict(
-									rowList[new Double(Math.floor(x / 9)).intValue()],
-									columnList[x%9],
-									fieldList[new Double(Math.floor((new Double(Math.floor(x / 9)).intValue()) / 3.0))
-											.intValue()][new Double(Math
-											.floor((x%9) / 3.0)).intValue()],
-									currentNumber)) {
-						currentField.getAvailableNumbers().remove(currentNumber);
+		while (x < 81) {
+			SingleField currentField = singleFieldArray[new Double(
+					Math.floor(x / 9)).intValue()][x % 9];
+			if (currentField.getAvailableNumbers().size() > 0) {
+				currentNumber = currentField.getAvailableNumbers().get(
+						random.nextInt(currentField.getAvailableNumbers()
+								.size()));
+				if (service
+						.conflict(
+								rowList[new Double(Math.floor(x / 9))
+										.intValue()],
+								columnList[x % 9],
+								fieldList[new Double(Math.floor((new Double(
+										Math.floor(x / 9)).intValue()) / 3.0))
+										.intValue()][new Double(Math
+										.floor((x % 9) / 3.0)).intValue()],
+								currentNumber)) {
+					currentField.getAvailableNumbers().remove(currentNumber);
 
-					} else {
-						currentField.setValue(currentNumber);
-						x++;
-					}
 				} else {
-					this.resetAvailableNumbers(currentField.getAvailableNumbers());
-					currentField.setValue(0);
-						x--;
+					currentField.setValue(currentNumber);
+					x++;
 				}
+			} else {
+				this.resetAvailableNumbers(currentField.getAvailableNumbers());
+				currentField.setValue(0);
+				x--;
 			}
+		}
 		clone.cloneSudokuField(singleFieldArray);
+		int index = 0;
+		int xValue = 0;
+		int yValue = 0;
+		while (index < difficulty) {
+			xValue = random.nextInt(9);
+			yValue = random.nextInt(9);
+			SingleField currentField = clone.getClonedSingleFieldArray()[yValue][xValue];
+			if (currentField.getValue() != 0) {
+				int oldValue = currentField.getValue();
+				currentField.setValue(0);
+//				if (service
+//						.fieldIsReproducible(
+//								clone.getClonedRowArray()[yValue],
+//								clone.getClonedColumnArray()[xValue],
+//								clone.getClonedGameFieldArray()[new Double(
+//										Math.floor((new Double(Math
+//												.floor(yValue / 3)).intValue()) / 3.0))
+//										.intValue()][new Double(Math
+//										.floor(xValue / 3.0)).intValue()])) {
+//					index++;
+//				} else {
+//					currentField.setValue(oldValue);
+//				}
+				index++;
+			}
+		}
 		this.setChanged();
-		this.notifyObservers(singleFieldArray);
+		this.notifyObservers(clone.getClonedSingleFieldArray());
 	}
 
 	private void resetAvailableNumbers(ArrayList<Integer> availableNumbers) {
