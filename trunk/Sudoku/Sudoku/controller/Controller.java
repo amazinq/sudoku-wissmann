@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+
 import game.LogicController;
 
 public class Controller {
@@ -25,5 +27,13 @@ public class Controller {
 	
 	public boolean gameIsWon(Integer[][] field) {
 		return logicController.gameIsWon(field);
+	}
+	
+	public void loadData(int[][][] field) {
+		logicController.loadData(field);
+	}
+	
+	public void saveData(File file) {
+		logicController.saveData(file);
 	}
 }

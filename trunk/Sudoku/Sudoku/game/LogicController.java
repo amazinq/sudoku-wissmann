@@ -1,11 +1,13 @@
 package game;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
 import consoleGUI.ConsoleController;
 import consoleGUI.ConsoleGUI;
+import dataOperation.SaveAndLoad;
 import swingGUI.MainFrame;
 
 public class LogicController extends Observable {
@@ -97,7 +99,7 @@ public class LogicController extends Observable {
 				yValue = random.nextInt(9);
 				SingleField currentField = clone.getClonedSingleFieldArray()[yValue][xValue];
 				regenerateIndex++;
-				// System.out.println(regenerateIndex);
+				//System.out.println(regenerateIndex);
 				if (currentField.getValue() != 0) {
 					int oldValue = currentField.getValue();
 					currentField.setValue(0);
@@ -117,7 +119,7 @@ public class LogicController extends Observable {
 					}
 				}
 				int oldIndex = index;
-				if (regenerateIndex > 100000) {
+				if (regenerateIndex > 1000) {
 					index = difficulty;
 				}
 				if (oldIndex == difficulty) {
@@ -128,6 +130,58 @@ public class LogicController extends Observable {
 		}
 		this.setChanged();
 		this.notifyObservers(clone.getClonedSingleFieldArray());
+	}
+	
+	public void loadData(int[][][] field) {
+		for (int y = 0; y < 9; y++) {
+			rowList[y] = new Row();
+			for (int x = 0; x < 9; x++) {
+				if (y == 0) {
+					columnList[x] = new Column();
+				}
+				if (x % 3 == 0 && y % 3 == 0) {
+					fieldList[new Double(Math.floor(y / 3.0)).intValue()][new Double(
+							Math.floor(x / 3.0)).intValue()] = new GameField();
+				}
+				singleFieldArray[y][x] = new SingleField();
+				this.resetAvailableNumbers(singleFieldArray[y][x]
+						.getAvailableNumbers());
+				rowList[y].addField(singleFieldArray[y][x]);
+				columnList[x].addField(singleFieldArray[y][x]);
+				fieldList[new Double(Math.floor(y / 3.0)).intValue()][new Double(
+						Math.floor(x / 3.0)).intValue()]
+						.addField(singleFieldArray[y][x]);
+			}
+		}
+		clone.cloneSudokuField(singleFieldArray);
+		for(int y = 0; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				clone.getClonedSingleFieldArray()[y][x].setValue(field[0][y][x]);
+			}
+		}
+		for(int y = 0; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				singleFieldArray[y][x].setValue(field[1][y][x]);
+			}
+		}
+		this.setChanged();
+		this.notifyObservers(clone.getClonedSingleFieldArray());
+	}
+	
+	public void saveData(File file) {
+		SaveAndLoad dataOperation = new SaveAndLoad();
+		int[][][] data = new int[2][9][9];
+		for(int y = 0; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				data[0][y][x] = clone.getClonedSingleFieldArray()[y][x].getValue();
+			}
+		}
+		for(int y = 0; y < 9; y++) {
+			for(int x = 0; x < 9; x++) {
+				data[1][y][x] = singleFieldArray[y][x].getValue();
+			}
+		}
+		dataOperation.Save(data, file);
 	}
 
 	private void resetAvailableNumbers(ArrayList<Integer> availableNumbers) {

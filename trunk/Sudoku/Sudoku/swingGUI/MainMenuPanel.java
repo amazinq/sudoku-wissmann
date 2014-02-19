@@ -7,11 +7,15 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.Controller;
+
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+
+import dataOperation.SaveAndLoad;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GeneralPanel {
@@ -50,7 +54,7 @@ public class MainMenuPanel extends GeneralPanel {
 				} else if(rdbtnMedium.isSelected()) {
 					difficulty = 40;
 				} else {
-					difficulty = 45;
+					difficulty = 50;
 				}
 				Controller.getInstance().generateGameField(difficulty);
 				MainFrame.getInstance().remove(getPanel());
@@ -73,7 +77,18 @@ public class MainMenuPanel extends GeneralPanel {
 				chooser = new FileChooser();
 				File file = chooser.generateOpenDialog();
 				if(file != null) {
-					
+					SaveAndLoad dataOperation = new SaveAndLoad();
+					Controller.getInstance().loadData(dataOperation.Load(file));
+					MainFrame.getInstance().remove(getPanel());
+					MainFrame.getInstance().setContentPane(new GamePanel());
+					MainFrame.getInstance().revalidate();
+					MainFrame.getInstance().repaint();
+				} else {
+					JOptionPane
+					.showMessageDialog(
+							null,
+							"File not Found!",
+							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
