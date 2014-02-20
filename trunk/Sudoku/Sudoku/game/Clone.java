@@ -1,14 +1,14 @@
 package game;
 
-
+//Klasse zum Klonen von Objekten
 public class Clone {
-	
+
+	// Geklonte Objekte
 	private SingleField[][] clonedSingleFieldArray;
 	private Row[] clonedRowArray;
 	private Column[] clonedColumnArray;
 	private GameField[][] clonedGameFieldArray;
-	
-	
+
 	public Clone() {
 		clonedSingleFieldArray = new SingleField[9][9];
 		clonedRowArray = new Row[9];
@@ -16,7 +16,10 @@ public class Clone {
 		clonedGameFieldArray = new GameField[3][3];
 	}
 
+	// Klont das Gesamte Sudokufeld mit allen abhängigkeiten
 	public void cloneSudokuField(SingleField[][] singleFieldArray) {
+		// Erzeugt neue Objekte, welche die Eigenschaften der alten Objekte
+		// annehmen
 		for (int y = 0; y < 9; y++) {
 			clonedRowArray[y] = new Row();
 			for (int x = 0; x < 9; x++) {
@@ -24,8 +27,9 @@ public class Clone {
 					clonedColumnArray[x] = new Column();
 				}
 				if (x % 3 == 0 && y % 3 == 0) {
-					clonedGameFieldArray[new Double(Math.floor(y / 3.0)).intValue()][new Double(
-							Math.floor(x / 3.0)).intValue()] = new GameField();
+					clonedGameFieldArray[new Double(Math.floor(y / 3.0))
+							.intValue()][new Double(Math.floor(x / 3.0))
+							.intValue()] = new GameField();
 				}
 				clonedSingleFieldArray[y][x] = new SingleField();
 				clonedRowArray[y].addField(clonedSingleFieldArray[y][x]);
@@ -33,7 +37,8 @@ public class Clone {
 				clonedGameFieldArray[new Double(Math.floor(y / 3.0)).intValue()][new Double(
 						Math.floor(x / 3.0)).intValue()]
 						.addField(clonedSingleFieldArray[y][x]);
-				clonedSingleFieldArray[y][x].setValue(singleFieldArray[y][x].getValue());
+				clonedSingleFieldArray[y][x].setValue(singleFieldArray[y][x]
+						.getValue());
 			}
 		}
 	}
