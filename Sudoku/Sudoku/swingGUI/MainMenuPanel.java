@@ -1,6 +1,5 @@
 package swingGUI;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +16,7 @@ import javax.swing.ButtonGroup;
 
 import dataOperation.SaveAndLoad;
 
+//Hauptmenüpanel
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GeneralPanel {
 
@@ -37,25 +37,27 @@ public class MainMenuPanel extends GeneralPanel {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Schließt bei betätigung des Buttons das frame (und damit auch
-				// die applikation) über einen statischen Zugriff
+				// die applikation) über einen singleton Zugriff
 				MainFrame.getInstance().dispose();
 			}
 		});
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnExit.setBounds(680, 530, 89, 23);
 		add(btnExit);
-		
+
 		playGamebtn = new JButton("Play");
 		playGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int difficulty = 0;
-				if(rdbtnEasy.isSelected()) {
+				// Überprüft die ausgewählte Schwierigkeitsstufe
+				if (rdbtnEasy.isSelected()) {
 					difficulty = 35;
-				} else if(rdbtnMedium.isSelected()) {
+				} else if (rdbtnMedium.isSelected()) {
 					difficulty = 40;
 				} else {
 					difficulty = 50;
 				}
+				// Spielfeldgeneration
 				Controller.getInstance().generateGameField(difficulty);
 				MainFrame.getInstance().remove(getPanel());
 				MainFrame.getInstance().setContentPane(new GamePanel());
@@ -65,18 +67,18 @@ public class MainMenuPanel extends GeneralPanel {
 		});
 		playGamebtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 		playGamebtn.setSize(250, 40);
-		playGamebtn.setLocation(275,200);
-				
-		
+		playGamebtn.setLocation(275, 200);
+
 		playGamebtn.setVisible(true);
 		add(playGamebtn);
-		
+
 		loadSavedGamebtn = new JButton("Load saved Game");
 		loadSavedGamebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Laden eines Spielstandes
 				chooser = new FileChooser();
 				File file = chooser.generateOpenDialog();
-				if(file != null) {
+				if (file != null) {
 					SaveAndLoad dataOperation = new SaveAndLoad();
 					Controller.getInstance().loadData(dataOperation.Load(file));
 					MainFrame.getInstance().remove(getPanel());
@@ -84,10 +86,8 @@ public class MainMenuPanel extends GeneralPanel {
 					MainFrame.getInstance().revalidate();
 					MainFrame.getInstance().repaint();
 				} else {
-					JOptionPane
-					.showMessageDialog(
-							null,
-							"File not Found!",
+					// Wenn file nicht gefunden, Fehlermeldung!
+					JOptionPane.showMessageDialog(null, "File not Found!",
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -96,24 +96,24 @@ public class MainMenuPanel extends GeneralPanel {
 		loadSavedGamebtn.setBounds(275, 300, 250, 40);
 		loadSavedGamebtn.setVisible(true);
 		add(loadSavedGamebtn);
-		
+
 		rdbtnEasy = new JRadioButton("Easy");
 		buttonGroup.add(rdbtnEasy);
 		rdbtnEasy.setSelected(true);
 		rdbtnEasy.setBounds(618, 210, 109, 23);
 		add(rdbtnEasy);
-		
+
 		rdbtnMedium = new JRadioButton("Medium");
 		buttonGroup.add(rdbtnMedium);
 		rdbtnMedium.setBounds(618, 250, 109, 23);
 		add(rdbtnMedium);
-		
+
 		rdbtnHard = new JRadioButton("Hard");
 		buttonGroup.add(rdbtnHard);
 		rdbtnHard.setBounds(618, 290, 109, 23);
 		add(rdbtnHard);
 	}
-	
+
 	private JPanel getPanel() {
 		return this;
 	}

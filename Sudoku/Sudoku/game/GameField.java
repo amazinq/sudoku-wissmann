@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
+//Repräsentiert jeweils ein 3x3 Feld auf dem Spielfeld, enthält Singlefields
 public class GameField extends FieldObject {
 
 	private ArrayList<SingleField> fieldArray;

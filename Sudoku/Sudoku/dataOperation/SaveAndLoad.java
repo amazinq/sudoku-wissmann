@@ -12,16 +12,20 @@ import javax.swing.JOptionPane;
 
 import game.GameField;
 
+//Speichern und Laden von daten
 public class SaveAndLoad {
 
 	private BufferedReader reader;
 	private FileWriter writer;
 
+	// Speichert das Spielfeld
 	public void Save(int[][][] data, File file) {
 		try {
 			writer = new FileWriter(file + ".txt");
 			String lineSeparator = System.getProperty("line.separator");
+			// Header zur überprüfung beim laden
 			writer.write("Sudoku Saved Data" + lineSeparator);
+			// Speichert das momentane und das gelöste spielfeld ab
 			for (int[][] data2 : data) {
 				for (int[] data1 : data2) {
 					for (int num : data1) {
@@ -38,6 +42,7 @@ public class SaveAndLoad {
 
 	}
 
+	// Läd Daten
 	public int[][][] Load(File file) {
 		try {
 			reader = new BufferedReader(new FileReader(file));
@@ -47,6 +52,8 @@ public class SaveAndLoad {
 		}
 		int[][][] loadedData = new int[2][9][9];
 		try {
+			// Wenn der Header vorhanden ist, werden das Aktuelle Spielfeld und
+			// das gelöste Spielfeld geladen
 			if (reader.readLine().equals("Sudoku Saved Data")) {
 				int z = 0;
 				int y = 0;

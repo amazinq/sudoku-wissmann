@@ -10,18 +10,18 @@ import javax.swing.JFrame;
 
 import controller.GUI_Interface;
 
-
+//JFrame
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements GUI_Interface {
 
 	private static MainFrame instance;
 	private SingleField array[][];
 
-
 	/**
 	 * Create the frame.
 	 */
 	private MainFrame() {
+		// Titel
 		setTitle("Sudoku");
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,14 +33,16 @@ public class MainFrame extends JFrame implements GUI_Interface {
 		setVisible(true);
 		setContentPane(new MainMenuPanel());
 	}
-	
+
+	// Singleton
 	public static MainFrame getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new MainFrame();
 		}
 		return instance;
 	}
 
+	// Update Methode, wird aufgerufen wenn die Observer benachrichtigt werden
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		array = (SingleField[][]) arg1;

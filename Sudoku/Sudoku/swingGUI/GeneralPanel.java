@@ -6,11 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+//Abstract Panel setzt die Überschrift und allgemeine attribute eines Panels für diese applikation
 @SuppressWarnings("serial")
 public abstract class GeneralPanel extends JPanel {
 
 	private JLabel mainLabel;
-	
+
 	public GeneralPanel() {
 		// Absolute Layout
 		setLayout(null);
